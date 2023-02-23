@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+@media screen and (max-width : 991px){
+    .col-md-12 img{
+        height: 0;
+        width: 0;
+        object-fit: cover;
+    }
+    .intro .col-md-12 h1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .intro .col-md-12 p{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+}
+
+img{
+    height: 50vh;
+    width: 30vw;
+    object-fit: cover;
+}
+
+.intro h1{
+    font-family: 'Allerta Stencil', sans-serif;
+    color:  rgb(30, 47, 64);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro p{
+    text-align: justify;
+}
+
+ul{
+    list-style-type: none;
+    text-align: center;
+}

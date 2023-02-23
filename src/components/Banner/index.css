@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
+@media screen and (max-width : 500px) {
+    .banner-caption h1 {
+        font-size: 30px;
+        width: 300px;
+        padding: 10px;
+        font-weight: 400;
+        display: flex;
+    }   
+}
+
+.banner-carousel{
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+}
+
+.banner-title{
+    text-align: left;
+    font-size: 40px;
+    opacity: 70%;
+    padding: 30px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    display: flex;
+    justify-content: flex-start;
+    width: 650px;
+}
+
+.banner-paragraph{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+
+.banner-caption{
+    background: linear-gradient(0deg, rgb(30, 47, 64) 40%, transparent); 
+}
