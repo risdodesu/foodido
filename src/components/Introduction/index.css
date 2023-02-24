@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Caveat&display=swap');
 
 @media screen and (max-width : 991px){
     .col-md-12 img{
@@ -19,7 +20,7 @@
 }
 
 img{
-    height: 50vh;
+    height: 320px;
     width: 30vw;
     object-fit: cover;
 }
@@ -36,7 +37,11 @@ img{
     text-align: justify;
 }
 
-ul{
+.features{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
     list-style-type: none;
-    text-align: center;
+    gap: 20px;
 }

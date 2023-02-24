@@ -1,4 +1,8 @@
 import './index.css';
+import {TbStars} from 'react-icons/tb'
+import {FcComments} from 'react-icons/fc'
+import {GrDocumentUpdate} from 'react-icons/gr'
+import {FcLike} from 'react-icons/fc'
 import intro from '../../assets/images/intro.webp'
 
 const Introduction = () => {
@@ -14,10 +18,13 @@ const Introduction = () => {
                 </div>
                 <div className="col-12 col-md-12 col-lg-4 p-0">
                     <h1><u>Our Features</u></h1>
-                    <ul>
-                        <li>Fitur 1</li>
-                        <li>Fitur 2</li>
-                        <li>Fitur 3</li>
+                    <ul className='p-0 d-flex align-item-center justify-content-center'>
+                        <div className='features'>
+                            <li><TbStars style={{color: 'yellow'}} size={40}/> Add Rating</li>
+                            <li><FcComments size={40}/> Add Review</li>
+                            <li><GrDocumentUpdate size={40}/> Update Recipes</li>
+                            <li><FcLike style={{color: 'red'}} size={40}/> Add to Favourites</li>
+                        </div>
                     </ul>
                 </div>
             </div>
