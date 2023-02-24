@@ -1,4 +1,5 @@
 import Banner from "../../components/Banner"
+import Footer from "../../components/Footer"
 import Introduction from "../../components/Introduction"
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <>
             <Banner/>
             <Introduction/>
+            <Footer/>
         </>
     )
 }
