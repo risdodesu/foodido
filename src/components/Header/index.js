@@ -14,7 +14,7 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="#link">Recipes</Nav.Link>
+                            <Nav.Link href="/recipes">Recipes</Nav.Link>
                             <NavDropdown title="Other" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
                             <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>
@@ -22,9 +22,10 @@ const Header = () => {
                             <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                            <Navbar.Text>
-                                Signed in as: <a href="/profile">Mark Otto</a>
-                            </Navbar.Text>    
+                            {/* <Navbar.Text>
+                                Signed in as: <a href="/profile">Username</a>
+                            </Navbar.Text>  */}
+                            <Nav.Link href="/login">Login</Nav.Link>   
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

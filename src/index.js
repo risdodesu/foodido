@@ -7,9 +7,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import components
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 // import pages
 import Home from './pages/Home'
+import Recipes from './pages/Recipes';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const router = createBrowserRouter([
     {
@@ -18,6 +22,7 @@ const router = createBrowserRouter([
             <>
                 <Header/>
                 <Outlet/>
+                <Footer/>
             </>
         ),
         errorElement: <p>Page Not Found</p>,
@@ -25,9 +30,21 @@ const router = createBrowserRouter([
             {
             path: "/",
             element: <Home/>,
+            },
+            {
+            path: "/recipes",
+            element: <Recipes/>,
             }
         ],
     },
+    {
+        path: "/login",
+        element: <Login/>
+    },
+    {
+        path: "/register",
+        element: <Register/>
+    }
 ]);
 
 
