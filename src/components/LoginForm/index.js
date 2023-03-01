@@ -1,32 +1,72 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './index.css'
 import { Form, Container } from 'react-bootstrap';
 import {BsEnvelope, BsLock} from 'react-icons/bs'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
+const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
 
 const errorStyle = {color:"red", height:"25px"}
 
 const LoginForm = () => {
+    
+    const navigate = useNavigate();
+    // Logic ketika sudah terdapat token, maka tidak bisa masuk ke halaman login
+    useEffect(()=>{
+        if(localStorage.getItem('token')){
+            navigate('/')
+        }
+    }, [navigate])
+
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: ''
-    },
-    validationSchema: Yup.object({
-        email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-        password: Yup.string()
-            .max(127, 'Must be 127 characters or less')
-            .required('Required'),
-    }),
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Required'),
+            password: Yup.string()
+                .max(127, 'Must be 127 characters or less')
+                .required('Required'),
+        }),
+    
+        onSubmit: (values) => {
+
+            axios({
+                method: 'post',
+                url: `${BASE_URL}/api/v1/login`,
+                headers: {
+                    apiKey: `${API_KEY}`
+                },
+                data: {
+                    email: values.email,
+                    password: values.password,
+                },
+            })
+            .then(function (response){
+                const token = response.data.token;
+                const username = response.data.user.name;
+                const role = response.data.user.role;
+                
+                localStorage.setItem('token', token);
+                localStorage.setItem('username', username);
+                localStorage.setItem('role', role);
+                
+                window.location.assign('/')
+            })
+            .catch(function(error){
+                alert(error.message);
+            })
+        },
+    });
 
   return (
     <div className='wrapper'>

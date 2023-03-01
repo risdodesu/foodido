@@ -2,12 +2,59 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import './index.css'
+import { Link } from 'react-router-dom';
+
+const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
+const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
 
 const Header = () => {
+
+    const [username, setUsername] = useState();
+    const JWT_TOKEN = localStorage.getItem('token');
+
+    useEffect(() => {
+        if(`${JWT_TOKEN}`){
+            axios({
+                method: 'get',
+                url: `${BASE_URL}/api/v1/user`,
+                headers: {
+                    Authorization: `Bearer ${JWT_TOKEN}`,
+                    apiKey: `${API_KEY}`
+                }
+            })
+            .then(function(response){
+                setUsername(response.data.user.name);
+            })
+        }
+    },[JWT_TOKEN]);
+
+    const handleLogout = () => {
+        axios({
+            method: 'get',
+            url: `${BASE_URL}/api/v1/logout`,
+            headers: {
+                Authorization: `Bearer ${JWT_TOKEN}`,
+                apiKey: `${API_KEY}`,
+            }
+            })
+            .then((response) => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("username");
+                localStorage.removeItem("role");
+
+                window.location.assign('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <>
-            <Navbar fixed="top" expand="lg" variant='dark' className='navbar'>
+            <Navbar fixed="top" expand="lg" variant="dark" className="navbar">
                 <Container>
                     <Navbar.Brand href="/">Foodido</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -18,14 +65,17 @@ const Header = () => {
                             <NavDropdown title="Other" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
                             <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
+                            {localStorage.getItem("username") ? (
+                                <Link onClick={() => handleLogout()} className='dropdown-item'>Log Out</Link>
+                            ) : null }
                             </NavDropdown>
                         </Nav>
-                            {/* <Navbar.Text>
-                                Signed in as: <a href="/profile">Username</a>
-                            </Navbar.Text>  */}
-                            <Nav.Link href="/login">Login</Nav.Link>   
+                        {localStorage.getItem("username") ? (
+                        <Navbar.Text>
+                            Signed in as: <a href="/profile">{username}</a>
+                        </Navbar.Text> 
+                        ) : <Nav.Link href="/login">Login</Nav.Link> }
+                               
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
