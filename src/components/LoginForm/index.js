@@ -72,12 +72,7 @@ const LoginForm = () => {
     <div className='wrapper'>
         <Container className='main'>
             <div className='row'>
-                <div className="col-md-6 side-image">
-                    <div className='text'>
-                        <p>We're sure to give you what you deserve. <i>-Foodido</i></p>
-                    </div>
-                </div>
-
+                <div className="col-md-6 side-image"/>
                 <div className='col-md-6 right'>
                     <form onSubmit={formik.handleSubmit}>
                     <header>Login</header>

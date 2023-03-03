@@ -1,0 +1,26 @@
+.foodWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.foodBody{
+    height: 140px;
+}
+
+.foodBody b{
+    color: coral;
+}
+
+.foodFooter{
+    padding: 1rem;
+}
+
+.foodDesc{
+    padding-bottom: 20px;
+}
