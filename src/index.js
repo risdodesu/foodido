@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 // import components
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,6 +13,8 @@ import Home from './pages/Home'
 import Recipes from './pages/Recipes';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Detail from './pages/Recipes/Detail';
+
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
             path: "/recipes",
             element: <Recipes/>,
+            },
+            {
+            path: "/detail/:foodId",
+            element: <Detail/>
             }
         ],
     },

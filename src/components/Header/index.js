@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './index.css'
 import { Link } from 'react-router-dom';
+import {GiMeal} from 'react-icons/gi'
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
@@ -16,7 +17,7 @@ const Header = () => {
     const JWT_TOKEN = localStorage.getItem('token');
 
     useEffect(() => {
-        if(`${JWT_TOKEN}`){
+        if(JWT_TOKEN){
             axios({
                 method: 'get',
                 url: `${BASE_URL}/api/v1/user`,
@@ -56,12 +57,15 @@ const Header = () => {
         <>
             <Navbar fixed="top" expand="lg" variant="dark" className="navbar">
                 <Container>
-                    <Navbar.Brand href="/">Foodido</Navbar.Brand>
+                    <Navbar.Brand className='title' href="/">Foodid<GiMeal/></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/recipes">Recipes</Nav.Link>
+                            {localStorage.getItem("username") ? (
+                                <Nav.Link href="/favourite">My Favourite</Nav.Link>
+                            ) : null }
                             <NavDropdown title="Other" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
                             <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>

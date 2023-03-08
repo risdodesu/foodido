@@ -13,11 +13,11 @@ const Introduction = () => {
                     <img src={intro} alt="intro" />
                 </div>
                 <div className="col-12 col-md-12 col-lg-4 p-0">
-                    <h1><u>About Us</u></h1>
+                    <h1><b>About Us</b></h1>
                     <p>Welcome to our website, Foodiders! We are a team of home cooks who are passionate about sharing our favorite recipes with others. We believe that cooking should be a fun and rewarding experience, and that everyone can create delicious meals in their own kitchens. Our recipes are inspired by a variety of cuisines and are designed to be simple, flavorful, and easy to follow. Whether you're looking for a quick weeknight dinner or a showstopping dessert, we have something for you. Thank you for visiting our website, and we hope you find inspiration and joy in our recipes. Happy cooking!</p>
                 </div>
                 <div className="col-12 col-md-12 col-lg-4 p-0">
-                    <h1><u>Our Features</u></h1>
+                    <h1><b>Our Features</b></h1>
                     <ul className='p-0 d-flex align-item-center justify-content-center'>
                         <div className='features'>
                             <li><TbStars style={{color: 'yellow'}} size={40}/> Add Rating</li>

@@ -1,21 +1,15 @@
-@media screen and (max-width: 766px) {
-    h3{
+@media screen and (max-width: 992px) {
+    .row h3{
         display: flex;
         align-items: center;
         justify-content: center;
         margin-top: 20px;
     }
     .follow li{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
+        font-size: 12px;
     }
     .contact li{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
+        font-size: 12px;
     }
 }
 

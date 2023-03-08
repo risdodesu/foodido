@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Caveat&family=Pacifico&family=Poppins&display=swap');
+
 .navbar {
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+}
+
+.navbar .title{
+    font-family: 'Pacifico', cursive;
 }

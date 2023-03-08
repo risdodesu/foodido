@@ -18,9 +18,15 @@
 }
 
 .foodFooter{
-    padding: 1rem;
+    padding: 1rem;    
 }
 
 .foodDesc{
     padding-bottom: 20px;
+}
+
+.foodFooter .foodLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
