@@ -60,9 +60,9 @@ const FoodDetail = () => {
                         }}
                         /> {food.totalLikes} suka</div>
                         <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='yellow' size={25} /></div>
-                    <div className='ratingBtn'>
+                    <div className='ratingBt mt-3'>
                         <Button className='mb-3' variant='success'>
-                            Rate this <MdOutlineRateReview/>
+                            Add Comments <MdOutlineRateReview/>
                         </Button>
                     </div>
                     </div>

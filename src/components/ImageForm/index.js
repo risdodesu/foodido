@@ -30,7 +30,7 @@ const ImageForm = ({onChange}) => {
       alert(`${response.data.message}`);
     }).catch((error) => {
       console.log(error);
-      alert("Image file size too large!");
+      alert("Format is not allow!");
     })
   }
 
@@ -41,7 +41,7 @@ const ImageForm = ({onChange}) => {
             className="form-control file-upload"
             type="file"
             onChange={handleChange}
-            accepts="image/*"
+            accepts="image/png, image/webp, image/jpeg"
         />
         <button
             onClick={handleApi}

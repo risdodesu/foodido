@@ -34,3 +34,21 @@
     justify-content: center;
     align-items: center;
 }
+
+.addFood{
+    transition: 0.2s ease;
+    height: 410px;
+}
+
+.addFood:hover{
+    cursor: pointer;
+    scale: 0.9;
+}
+
+.addFoodBody{
+    color: rgb(108, 108, 108);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(201, 201, 201);
+}

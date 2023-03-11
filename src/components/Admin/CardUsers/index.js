@@ -61,11 +61,7 @@ const CardUsers = () => {
                             </Card.Body>
                             <div className='row foodFooter'>
                                 <div className='col-12 foodLink'>
-                                    <Link className='text-decoration-none' style={{color:'green'}} to = {
-                                        {
-                                            pathname : `/detail/${item.id}`
-                                        }
-                                    }>Update Role</Link>
+                                    <Link className='text-decoration-none' style={{color:'green'}}>Update Role</Link>
                                 </div>
                             </div>
                     </Card>

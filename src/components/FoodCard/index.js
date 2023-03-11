@@ -2,12 +2,16 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './index.css'
 import { Card, Button } from 'react-bootstrap';
-import {BsHeartFill, BsStarFill, BsTrash, BsPencil} from 'react-icons/bs'
+import {BsHeartFill, BsStarFill, BsTrash, BsPencil, BsPlusCircle} from 'react-icons/bs'
 import { Link } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
 const JWT_TOKEN = localStorage.getItem('token');
+
+const handleAddFood = () => {
+  window.location = '/add-food'
+}
 
 const FoodCard = () => {
 
@@ -71,6 +75,24 @@ const FoodCard = () => {
             });
         }
     };
+    const deleteFood = (id) => {
+      if (window.confirm(`Are you sure want to delete this food?`)) {
+        axios({
+          method: "delete",
+          url: `${BASE_URL}/api/v1/delete-food/${id}`,
+          headers: {
+            Authorization: `Bearer ${JWT_TOKEN}`,
+            apiKey: `${API_KEY}`,
+          },
+        })
+          .then((response) => {
+            getData();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    };
     
     return (
         <div className='foodWrapper container'>
@@ -111,7 +133,7 @@ const FoodCard = () => {
                                             }>View Detail</Link>
                                         </div>
                                         <div className='col-6 foodLink'>
-                                            <Button variant='danger'><BsTrash/></Button>
+                                            <Button  onClick={() => deleteFood(item.id)} vadiant='danger'><BsTrash/></Button>
                                             <Button variant='success'><BsPencil/></Button>
                                         </div>
                                       </>
@@ -120,6 +142,13 @@ const FoodCard = () => {
                     </Card>
                 );
             })}
+            {localStorage.getItem("role") === "admin" ? (
+              <Card onClick={handleAddFood} className='addFood' style={{ width: '18rem' }}>
+                <Card.Body className='addFoodBody border-bottom'>
+                    <Card.Title><BsPlusCircle size={50}/></Card.Title>
+                </Card.Body>
+              </Card>
+            ) : null}
         </div>
     )
 }

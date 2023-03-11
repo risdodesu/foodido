@@ -17,6 +17,7 @@ import Detail from './pages/Recipes/Detail';
 import Dashboard from './pages/Admin/Dashboard';
 import Users from './pages/Admin/Users';
 import Favourites from './pages/Favourites';
+import AddFood from './pages/AddFood';
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
             path: "/favourite",
             element: <Favourites/>
+            },
+            {
+            path: "/add-food",
+            element: <AddFood/>
             }
         ],
     },
