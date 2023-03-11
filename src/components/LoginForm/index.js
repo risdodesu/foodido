@@ -86,7 +86,6 @@ const LoginForm = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
-                        autoComplete="off"
                         placeholder='Enter your email here'
                     />
                     <Form.Text>

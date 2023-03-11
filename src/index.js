@@ -16,6 +16,7 @@ import Register from './pages/Register';
 import Detail from './pages/Recipes/Detail';
 import Dashboard from './pages/Admin/Dashboard';
 import Users from './pages/Admin/Users';
+import Favourites from './pages/Favourites';
 
 
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
             path: "/users",
             element: <Users/>
+            },
+            {
+            path: "/favourite",
+            element: <Favourites/>
             }
         ],
     },

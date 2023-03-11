@@ -52,15 +52,30 @@ const FoodDetail = () => {
                         <div className='col-6 col-md-6 col-lg-6'>Created at : {food.createdAt}</div>
                         <div className='col-6 col-md-6 col-lg-6'>Updated at : {food.updatedAt}</div>
                     </div>
+                    {localStorage.getItem("role") === "user" ? (
                     <div className='row mt-3 mb-3'>
-                        <div className='col-6 col-md-6 col-lg-6'><BsHeartFill color='red' size={25} /> {food.totalLikes} suka</div>
+                        <div className='col-6 col-md-6 col-lg-6'><BsHeartFill size={25} 
+                        style={{
+                            color: `${food.isLike ? "red" : "grey"}`,
+                        }}
+                        /> {food.totalLikes} suka</div>
                         <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='yellow' size={25} /></div>
-                    </div>
                     <div className='ratingBtn'>
                         <Button className='mb-3' variant='success'>
                             Rate this <MdOutlineRateReview/>
                         </Button>
                     </div>
+                    </div>
+                    ) : <>
+                            <div className='row mt-3 mb-3'>
+                                <div className='col-6 col-md-6 col-lg-6'><BsHeartFill color='red' 
+                                size={25} 
+                                /> {food.totalLikes} suka</div>
+                                <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='yellow' size={25} /></div>
+                                <div className='ratingBtn'></div>
+                            </div>
+                        </> 
+                    }
                     <h1 className='border-bottom'><b>Review</b></h1>
                     <div className='foodReview'>
                         ini review
