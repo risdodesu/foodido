@@ -49,6 +49,7 @@
     width: 100%;
     margin-bottom: 0px;
     color: #40414a;
+    padding: 0px;
 }
 
 header{
@@ -86,7 +87,7 @@ span a:hover{
 }
 
 .registerForm{
-    width: 300px;
+    width: 350px;
     padding: 10px;
     height: 400px;
     overflow: auto;

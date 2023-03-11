@@ -2,6 +2,10 @@ import React, { useState} from 'react';
 import axios from 'axios';
 import "./index.css";
 
+const BASE_URL = process.env.REACT_APP_FOOD_BASEURL
+const API_KEY = process.env.REACT_APP_FOOD_APIKEY
+const JWT_TOKEN = localStorage.getItem("token")
+
 const ImageForm = ({onChange}) => {
   const [image, setImage] = useState("")
 
@@ -10,19 +14,18 @@ const ImageForm = ({onChange}) => {
   }
 
   const handleApi = () => {
-    const url = `${process.env.REACT_APP_BASEURL}/api/v1/upload-image`;
+    const url = `${BASE_URL}/api/v1/upload-image`;
     const formData = new FormData();
     formData.append("image", image);
     const headersApi = {
       headers: {
-        apiKey: `${process.env.REACT_APP_APIKEY}`,
-        Authorization: `Bearer${localStorage.getItem("token")}`,
+        apiKey: `${API_KEY}`,
+        Authorization: `Bearer ${JWT_TOKEN}`,
         "Content-Type": "multipart/form-data",
       },
     };
 
     axios.post(url, formData, headersApi).then((response) => {
-      console.log(response);
       onChange(response.data.url);
       alert(`${response.data.message}`);
     }).catch((error) => {
@@ -46,7 +49,7 @@ const ImageForm = ({onChange}) => {
             encType="multipart/form-data"
             type="button"
         >
-            <i className="ri-upload-2-line"></i>
+            <i className="ri-upload-2-line">Upload</i>
         </button>
         </div>
     </>

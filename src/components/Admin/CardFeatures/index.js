@@ -29,7 +29,6 @@ const CardFeatures = () => {
             })
             .then(function(response){
                 setData(response.data.user);
-                console.log(response.data.user);
             })
         }
     },[JWT_TOKEN]);
@@ -42,11 +41,15 @@ const CardFeatures = () => {
         window.location = '/users'
     }
 
+    const handleAdmBtn = () => {
+        window.location = '/profile'
+    }
+
     return (
         <div className='dashboard'>
             <div className='row dashCards container'>
                 <div className='col-12 col-md-6 col-lg-6'>
-                    <div className='dashAdmCard container'>
+                    <div onClick={handleAdmBtn} className='dashAdmCard container'>
                         <h1><b>Welcome {data && data.name}</b></h1>
                         <img className='adminIcon' alt={data && data.name} onError={iconDefault} src={
                             data && data.profilePictureUrl ? data && data.profilePictureUrl 

@@ -6,7 +6,8 @@ import { Form, Container } from 'react-bootstrap';
 import {BsEnvelope, BsLock, BsPencilSquare, BsPerson, BsPersonCircle, BsTelephone} from 'react-icons/bs'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import ImageForm from "../../components/ImageForm";
+import ImageForm from '../../components/ImageForm'
+
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
@@ -34,7 +35,6 @@ const RegisterForm = () => {
             password: '',
             passwordRepeat: '',
             role: '',
-            // profilePictureUrl: '',
             phoneNumber: '',
         },
         validationSchema: Yup.object({
@@ -50,9 +50,7 @@ const RegisterForm = () => {
             passwordRepeat: Yup.string()
                 .required('Required')
                 .oneOf([Yup.ref('password'), null], 'Password must match'),
-            role: Yup.string(),
-            profilePictureUrl: Yup.string()
-                .required('Required'),
+            role: Yup.string().oneOf(["user", "admin"]).required("Required"),
             phoneNumber: Yup.string()
             .matches(/^[0-9]{10,14}$/, "Phone number is not valid")
             .required("Required"),
@@ -62,7 +60,7 @@ const RegisterForm = () => {
 
             axios({
                 method: 'post',
-                url: `${BASE_URL}/api/v1/login`,
+                url: `${BASE_URL}/api/v1/register`,
                 headers: {
                     apiKey: `${API_KEY}`
                 },
@@ -76,22 +74,17 @@ const RegisterForm = () => {
                     phoneNumber: values.phoneNumber,
                 },
             })
-            .then(function (response){
-                const token = response.data.token;
-                const username = response.data.user.name;
-                const role = response.data.user.role;
-                
-                localStorage.setItem('token', token);
-                localStorage.setItem('username', username);
-                localStorage.setItem('role', role);
-                
-                window.location.assign('/')
-            })
-            .catch(function(error){
-                alert(error.message);
-            })
-        },
-    });
+            .then((response) => {
+                console.log(response);
+                alert("Registration success!");
+                window.location.reload();
+              })
+              .catch((error) => {
+                console.log(error);
+                alert("Registration failed. Please try again!");
+              });
+          },
+        });
 
   return (
     <div className='wrapper'>
@@ -110,12 +103,13 @@ const RegisterForm = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.name}
-                                autoComplete="off"
                                 placeholder='Enter your name here'
                             />
-                            <Form.Text>
-                                <div style={errorStyle}>{formik.errors.name && formik.errors.name}</div>
-                            </Form.Text>
+                            {formik.touched.name && formik.errors.name ? (
+                                <Form.Text>
+                                    <div style={errorStyle}>{formik.errors.name}</div>
+                                </Form.Text>
+                            ) : null}
 
                             <label htmlFor="email">Email <BsEnvelope/></label>
                             <input
@@ -125,12 +119,13 @@ const RegisterForm = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 value={formik.values.email}
-                                autoComplete="off"
                                 placeholder='Enter your email here'
                             />
-                            <Form.Text>
-                                <div style={errorStyle}>{formik.errors.email && formik.errors.email}</div>
-                            </Form.Text>
+                            {formik.touched.email && formik.errors.email ? (
+                                <Form.Text>
+                                    <div style={errorStyle}>{formik.errors.email}</div>
+                                </Form.Text>
+                            ) : null}
                             
                             <label htmlFor="password">Password <BsLock/></label>
                             <input
@@ -142,9 +137,11 @@ const RegisterForm = () => {
                                 value={formik.values.password}
                                 placeholder='Enter your password here'
                             />
-                            <Form.Text>
-                                <div style={errorStyle}>{formik.errors.password && formik.errors.password}</div>
-                            </Form.Text>
+                            {formik.touched.password && formik.errors.password ? (
+                                <Form.Text>
+                                    <div style={errorStyle}>{formik.errors.password}</div>
+                                </Form.Text>
+                            ) : null}
                             
                             <label htmlFor="passwordRepeat">Confirm Password <BsLock/></label>
                             <input
@@ -156,15 +153,26 @@ const RegisterForm = () => {
                                 value={formik.values.passwordRepeat}
                                 placeholder='Enter your password here'
                             />
-                            <Form.Text>
-                                <div style={errorStyle}>{formik.errors.passwordRepeat && formik.errors.passwordRepeat}</div>
-                            </Form.Text>
+                            {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
+                                <Form.Text>
+                                    <div style={errorStyle}>{formik.errors.passwordRepeat}</div>
+                                </Form.Text>
+                            ) : null}
 
-                            <label htmlFor="password">Select Role <BsPerson/></label>
-                            <Form.Select className='mb-3' aria-label="Default select example">
+                            <label htmlFor="password">Select Role <BsPerson/></label>                  
+                            <select
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.role}
+                                component="select"
+                                id="role"
+                                name="role"
+                                multiple={false}
+                                className="form-select fs-12px"
+                            >
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
-                            </Form.Select>
+                            </select>
                 
                             <label htmlFor="profile">Profile Picture <BsPersonCircle/></label>
                             <ImageForm onChange={(value) => setUploadImage(value)} />
@@ -180,12 +188,14 @@ const RegisterForm = () => {
                                 autoComplete="off"
                                 placeholder='Enter your number here'
                             />
-                            <Form.Text>
-                                <div style={errorStyle}>{formik.errors.phoneNumber && formik.errors.phoneNumber}</div>
-                            </Form.Text>
-
+                            {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                                <Form.Text>
+                                    <div style={errorStyle}>{formik.errors.phoneNumber}</div>
+                                </Form.Text>
+                            ) : null}
+                            
                         </div>
-                            <button className='submit container' type="submit">Register</button>
+                            <button className='submit container' value="RegisterForm" type="submit">Register</button>
                             <div className='login'>
                                 <span>Already have an account? <a href="/login">Login here</a></span>
                             </div>
