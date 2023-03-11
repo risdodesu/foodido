@@ -1,3 +1,7 @@
+.cardImage{
+    height: 200px;
+}
+
 .foodWrapper{
     display: flex;
     flex-wrap: wrap;

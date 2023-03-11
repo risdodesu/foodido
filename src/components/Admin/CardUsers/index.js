@@ -1,17 +1,23 @@
+import './index.css'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import './index.css'
 import { Card } from 'react-bootstrap';
-import {BsHeartFill, BsStarFill} from 'react-icons/bs'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { BsEnvelope, BsTelephone, BsPerson } from 'react-icons/bs'
+import defaultIcon from '../../../assets/images/default-icon.jpg'
+
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
 const JWT_TOKEN = localStorage.getItem('token');
 
-const FoodCard = () => {
+const CardUsers = () => {
 
     const [data, setData] = useState([])
+
+    const iconDefault = (e) => {
+        e.target.src = defaultIcon
+    }
 
     useEffect(() => {
         getData()
@@ -20,7 +26,7 @@ const FoodCard = () => {
     const getData = () => {
         axios({
             method: 'get',
-            url: `${BASE_URL}/api/v1/foods`,
+            url: `${BASE_URL}/api/v1/all-user`,
             headers: {
                 Authorization: `Bearer ${JWT_TOKEN}`,
                 apiKey: `${API_KEY}`,   
@@ -37,22 +43,29 @@ const FoodCard = () => {
             {data.map((item) => {
                 return (
                     <Card style={{ width: '18rem' }} key={item.id}>
-                        <Card.Img className='cardImage' variant="top" src={item.imageUrl}/>
-                            <Card.Body className='foodBody border-bottom'>
+                        <div className='imageUsersPosition'>
+                            <Card.Img alt={item.name} onError={iconDefault} className='cardImageUsers' variant="top" src={
+                                item.profilePictureUrl
+                                    ? item.profilePictureUrl
+                                    : defaultIcon
+                                }
+                            />
+                        </div>
+                            <Card.Body className='cardUsersBody border-bottom'>
                                 <Card.Title><b>{item.name}</b></Card.Title>
-                                <Card.Text className='foodDesc'>{item.description}</Card.Text>
+                                <div className='cardUsersDesc'>
+                                    <Card.Text><BsEnvelope/> {item.email}</Card.Text>
+                                    <Card.Text><BsTelephone/> {item.phoneNumber}</Card.Text>
+                                    <Card.Text><BsPerson/> {item.role}</Card.Text>
+                                </div>
                             </Card.Body>
                             <div className='row foodFooter'>
-                                <div className='col-6'>
-                                    <div>{item.rating} <BsStarFill color='yellow' size={15}/></div>
-                                    <div><BsHeartFill color='red' /> {item.totalLikes} suka </div>
-                                </div>
-                                <div className='col-6 foodLink'>
+                                <div className='col-12 foodLink'>
                                     <Link className='text-decoration-none' style={{color:'green'}} to = {
                                         {
                                             pathname : `/detail/${item.id}`
                                         }
-                                    }>View Detail</Link>
+                                    }>Update Role</Link>
                                 </div>
                             </div>
                     </Card>
@@ -62,4 +75,4 @@ const FoodCard = () => {
     )
 }
 
-export default FoodCard;
+export default CardUsers;

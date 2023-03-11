@@ -2,8 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './index.css'
 import { Link } from 'react-router-dom';
 import {GiMeal} from 'react-icons/gi'
@@ -33,6 +33,9 @@ const Header = () => {
     },[JWT_TOKEN]);
 
     const handleLogout = () => {
+
+        if (window.confirm('Apakah anda yakin ingin keluar?'))
+
         axios({
             method: 'get',
             url: `${BASE_URL}/api/v1/logout`,
@@ -61,18 +64,27 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="/">Home</Nav.Link>
+                            {localStorage.getItem("role") === "admin" ? (
+                                <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                            ) : <Nav.Link href="/">Home</Nav.Link> }      
                             <Nav.Link href="/recipes">Recipes</Nav.Link>
-                            {localStorage.getItem("username") ? (
+                            {localStorage.getItem("role") === "user" ? (
                                 <Nav.Link href="/favourite">My Favourite</Nav.Link>
                             ) : null }
-                            <NavDropdown title="Other" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
-                            <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>
-                            {localStorage.getItem("username") ? (
-                                <Link onClick={() => handleLogout()} className='dropdown-item'>Log Out</Link>
+                            {localStorage.getItem("role") === "admin" ? (
+                                <Nav.Link href="/users">All Users</Nav.Link>
+                            ) :  
+                                <NavDropdown title="Other" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="/about">About Us</NavDropdown.Item>
+                                <NavDropdown.Item href="/contact">Contact Us</NavDropdown.Item>
+                                {localStorage.getItem("role") === "user" ? (
+                                    <Link onClick={() => handleLogout()} className='dropdown-item'>Log Out</Link>
+                                ) : null }
+                                </NavDropdown>
+                            }
+                            {localStorage.getItem("role") === "admin" ? (
+                                 <Nav.Link onClick={() => handleLogout()}>Log Out</Nav.Link>
                             ) : null }
-                            </NavDropdown>
                         </Nav>
                         {localStorage.getItem("username") ? (
                         <Navbar.Text>

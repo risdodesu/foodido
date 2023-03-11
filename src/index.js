@@ -14,6 +14,8 @@ import Recipes from './pages/Recipes';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Detail from './pages/Recipes/Detail';
+import Dashboard from './pages/Admin/Dashboard';
+import Users from './pages/Admin/Users';
 
 
 const router = createBrowserRouter([
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
             {
             path: "/detail/:foodId",
             element: <Detail/>
+            },
+            {
+            path: "/dashboard",
+            element: <Dashboard/>
+            },
+            {
+            path: "/users",
+            element: <Users/>
             }
         ],
     },

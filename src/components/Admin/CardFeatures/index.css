@@ -1,0 +1,77 @@
+@media screen and (max-width : 767px) {
+    .col-12 .dashAdmCard{
+        height: 200px;
+    }
+}
+
+.dashboard{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../assets/images/dashboard.webp);
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dashboard .dashCards{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.dashAdmCard{
+    background-color: orange;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border-style: dashed;
+}
+
+.dashRecipesCard{
+    background-color: rgb(76, 140, 244);
+    border-radius: 20px;
+    color: white;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: 0.2s ease;
+    border-style: dashed;
+}
+
+.dashRecipesCard:hover{
+    scale: 0.9;
+    cursor: pointer;
+}
+
+.dashUsersCard{
+    background-color: rgb(76, 167, 56);
+    border-radius: 20px;
+    color: white;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease;
+    border-style: dashed;
+}
+
+.dashUsersCard:hover{
+    scale: 0.9;
+    cursor: pointer;
+}
+
+.adminIcon{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border-style: dashed;
+}

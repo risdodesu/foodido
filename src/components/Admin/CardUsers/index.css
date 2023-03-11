@@ -1,0 +1,45 @@
+.imageUsersPosition{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.cardImageUsers{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: none;
+    object-fit: cover;
+}
+
+.foodWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.cardUsersBody{
+    height: 160px;
+}
+
+.cardUsersBody b{
+    color: coral;
+    display: flex;
+    justify-content: center;
+}
+
+.cardUsersDesc{
+    padding-bottom: 20px;
+    font-size: 12px;
+}
+
+.foodFooter .foodLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -60,8 +60,10 @@ const LoginForm = () => {
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
                 
-                window.location.assign('/')
-            })
+                localStorage.getItem("role") === "admin" ? (
+                    window.location.assign('/dashboard')
+                ) : window.location.assign('/') }
+            )
             .catch(function(error){
                 alert(error.message);
             })
