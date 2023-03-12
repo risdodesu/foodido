@@ -3,6 +3,7 @@ import axios from "axios";
 import { Formik, Form, useField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import ImageForm from "../../components/ImageForm"
+import './index.css'
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
