@@ -18,6 +18,7 @@ import Dashboard from './pages/Admin/Dashboard';
 import Users from './pages/Admin/Users';
 import Favourites from './pages/Favourites';
 import AddFood from './pages/AddFood';
+import Profile from './pages/Profile';
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
             path: "/add-food",
             element: <AddFood/>
+            },
+            {
+            path: "/profile",
+            element: <Profile/>
             }
         ],
     },

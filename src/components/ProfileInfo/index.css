@@ -1,0 +1,42 @@
+.profilePosition{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../assets/images/dashboard.webp');
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+}
+
+.profileContent{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.585);
+    align-items: center;
+    justify-content: center;
+}
+
+.profileContent h1{
+    color: orange;
+}
+
+.profileContent li{
+    color: white;
+}
+
+.profileContent .row{
+    width: auto;
+    margin: 20px;
+}
+
+.ProfileIcon{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border-color: white;
+    object-fit: cover;
+    border-style: dashed;
+    margin-bottom: 20px;
+}
