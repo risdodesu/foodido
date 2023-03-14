@@ -19,7 +19,7 @@ const RegisterForm = () => {
     const [uploadImage, setUploadImage] = useState("");
 
     const navigate = useNavigate();
-    // Logic ketika sudah terdapat token, maka tidak bisa masuk ke halaman login
+    // Logic ketika sudah terdapat token, maka tidak bisa masuk ke halaman register
     useEffect(()=>{
         if(localStorage.getItem('token')){
             navigate('/')
@@ -50,7 +50,7 @@ const RegisterForm = () => {
             passwordRepeat: Yup.string()
                 .required('Required')
                 .oneOf([Yup.ref('password'), null], 'Password must match'),
-            role: Yup.string().oneOf(["user", "admin"]).required("Required"),
+            role: Yup.string().oneOf(['user', 'admin'], 'Select Role').required("Required"),
             phoneNumber: Yup.string()
             .matches(/^[0-9]{10,14}$/, "Phone number is not valid")
             .required("Required"),
@@ -93,109 +93,110 @@ const RegisterForm = () => {
                 <div className="col-md-6 side-image"/>
                 <div className='col-md-6 rightReg'>
                     <form onSubmit={formik.handleSubmit}>
-                    <header>Register</header>
-                        <div className='registerForm'>
-                            <label htmlFor="name">Name <BsPencilSquare/></label>
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.name}
-                                placeholder='Enter your name here'
-                            />
-                            {formik.touched.name && formik.errors.name ? (
-                                <Form.Text>
-                                    <div style={errorStyle}>{formik.errors.name}</div>
-                                </Form.Text>
-                            ) : null}
+                        <header>Register</header>
+                            <div className='regForm'>
+                                <label htmlFor="name">Name <BsPencilSquare/></label>
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.name}
+                                    placeholder='Enter your name here'
+                                />
+                                {formik.touched.name && formik.errors.name ? (
+                                    <Form.Text>
+                                        <div style={errorStyle}>{formik.errors.name}</div>
+                                    </Form.Text>
+                                ) : null}
 
-                            <label htmlFor="email">Email <BsEnvelope/></label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.email}
-                                placeholder='Enter your email here'
-                            />
-                            {formik.touched.email && formik.errors.email ? (
-                                <Form.Text>
-                                    <div style={errorStyle}>{formik.errors.email}</div>
-                                </Form.Text>
-                            ) : null}
-                            
-                            <label htmlFor="password">Password <BsLock/></label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.password}
-                                placeholder='Enter your password here'
-                            />
-                            {formik.touched.password && formik.errors.password ? (
-                                <Form.Text>
-                                    <div style={errorStyle}>{formik.errors.password}</div>
-                                </Form.Text>
-                            ) : null}
-                            
-                            <label htmlFor="passwordRepeat">Confirm Password <BsLock/></label>
-                            <input
-                                id="passwordRepeat"
-                                name="passwordRepeat"
-                                type="password"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.passwordRepeat}
-                                placeholder='Enter your password here'
-                            />
-                            {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
-                                <Form.Text>
-                                    <div style={errorStyle}>{formik.errors.passwordRepeat}</div>
-                                </Form.Text>
-                            ) : null}
+                                <label htmlFor="email">Email <BsEnvelope/></label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.email}
+                                    placeholder='Enter your email here'
+                                />
+                                {formik.touched.email && formik.errors.email ? (
+                                    <Form.Text>
+                                        <div style={errorStyle}>{formik.errors.email}</div>
+                                    </Form.Text>
+                                ) : null}
+                                
+                                <label htmlFor="password">Password <BsLock/></label>
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.password}
+                                    placeholder='Enter your password here'
+                                />
+                                {formik.touched.password && formik.errors.password ? (
+                                    <Form.Text>
+                                        <div style={errorStyle}>{formik.errors.password}</div>
+                                    </Form.Text>
+                                ) : null}
+                                
+                                <label htmlFor="passwordRepeat">Confirm Password <BsLock/></label>
+                                <input
+                                    id="passwordRepeat"
+                                    name="passwordRepeat"
+                                    type="password"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.passwordRepeat}
+                                    placeholder='Enter your password here'
+                                />
+                                {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
+                                    <Form.Text>
+                                        <div style={errorStyle}>{formik.errors.passwordRepeat}</div>
+                                    </Form.Text>
+                                ) : null}
 
-                            <label htmlFor="password">Select Role <BsPerson/></label>                  
-                            <select
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.role}
-                                component="select"
-                                id="role"
-                                name="role"
-                                multiple={false}
-                                className="form-select fs-12px"
-                            >
-                                <option value="user">User</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                
-                            <label htmlFor="profile">Profile Picture <BsPersonCircle/></label>
-                            <ImageForm onChange={(value) => setUploadImage(value)} />
+                                <label htmlFor="password">Select Role <BsPerson/></label>                  
+                                <select
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.role}
+                                    component="select"
+                                    id="role"
+                                    name="role"
+                                    multiple={false}
+                                    className="form-select fs-12px"
+                                >
+                                    <option value="">Select Role <BsPerson/></option>
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                    
+                                <label htmlFor="profile">Profile Picture <BsPersonCircle/></label>
+                                <ImageForm onChange={(value) => setUploadImage(value)} />
 
-                            <label htmlFor="phoneNumber">Phone Number <BsTelephone/></label>
-                            <input
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.phoneNumber}
-                                autoComplete="off"
-                                placeholder='Enter your number here'
-                            />
-                            {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                                <Form.Text>
-                                    <div style={errorStyle}>{formik.errors.phoneNumber}</div>
-                                </Form.Text>
-                            ) : null}
-                            
-                        </div>
-                            <button className='submit container' value="RegisterForm" type="submit">Register</button>
+                                <label htmlFor="phoneNumber">Phone Number <BsTelephone/></label>
+                                <input
+                                    id="phoneNumber"
+                                    name="phoneNumber"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.phoneNumber}
+                                    autoComplete="off"
+                                    placeholder='Enter your number here'
+                                />
+                                {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                                    <Form.Text>
+                                        <div style={errorStyle}>{formik.errors.phoneNumber}</div>
+                                    </Form.Text>
+                                ) : null}
+                                
+                            </div>
+                            <button className='submit container' type="submit">Register</button>
                             <div className='login'>
                                 <span>Already have an account? <a href="/login">Login here</a></span>
                             </div>

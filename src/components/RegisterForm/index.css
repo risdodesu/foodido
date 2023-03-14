@@ -36,7 +36,6 @@
 
 .rightReg input{
     display: flex;
-    width: 330px;
     box-sizing: border-box;
     flex-direction: column;
     position: relative;
@@ -45,11 +44,10 @@
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     outline: none;
-    height: 45px;
+    height: 30px;
     width: 100%;
     margin-bottom: 0px;
     color: #40414a;
-    padding: 0px;
 }
 
 header{
@@ -86,7 +84,7 @@ span a:hover{
     text-decoration: underline;
 }
 
-.registerForm{
+.regForm{
     width: 350px;
     padding: 10px;
     height: 400px;
