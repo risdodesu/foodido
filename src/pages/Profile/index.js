@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const Profile = () => {
 
     const navigate = useNavigate();
-    //logic ketika tidak ada token dan role bukan admin, maka akan redirect ke halaman login
+    //logic ketika tidak ada token, maka akan redirect ke halaman utama
     useEffect(()=>{
         if (!localStorage.getItem('token')){
             navigate('/')
