@@ -15,7 +15,7 @@ const FoodDetail = () => {
     const [food, setFood] = useState("");
     let { foodId } = useParams();
     const [foodReview, setFoodReview] = useState([]);
-    
+
     const iconDefault = (e) => {
         e.target.src = defaultIcon
     }
@@ -80,7 +80,7 @@ const FoodDetail = () => {
                             color: `${food.isLike ? "red" : "grey"}`,
                         }}
                         /> {food.totalLikes} suka</div>
-                        <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='yellow' size={25} /></div>
+                        <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='orange' size={25} /></div>
                     <div className='ratingBt mt-3'>
                     <ReviewModal/>
                     </div>
@@ -99,12 +99,20 @@ const FoodDetail = () => {
                     <h1 className='border-bottom'><b>Review</b></h1>
                     <div className='foodReviews'>
                       {foodReview.map((dataReview) => {
+                        const rate = Array(dataReview.rating).fill(0);
                         return(
                           <div className='userReviews' key={dataReview.id}>
                               <span><img src={
                                 dataReview.user && dataReview.user.profilePictureUrl ? dataReview.user && dataReview.user.profilePictureUrl 
                                 : defaultIcon} alt={dataReview.user.name} onError={iconDefault}></img></span>
                               <span><b>{dataReview.user.name}</b></span>
+                              <div>
+                                  {rate.map((_, index) => {
+                                    return (
+                                      <span key={index}><BsStarFill color='orange'/></span>
+                                    )
+                                  })}
+                              </div>
                               <p>{dataReview.review}</p>
                           </div>
                         );
