@@ -8,6 +8,7 @@ This is my final project from dibimbing.id. This project was created using [Reac
 - Register Page
 - Home Page
 - Detail Food Page
+- Add Review
 - Recipes Management Page (Admin)
 
 ## Libraries and Tools
