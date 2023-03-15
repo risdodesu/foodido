@@ -20,7 +20,7 @@ const Introduction = () => {
                     <h1><b>Our Features</b></h1>
                     <ul className='p-0 d-flex align-item-center justify-content-center'>
                         <div className='features'>
-                            <li><TbStars style={{color: 'yellow'}} size={40}/> Add Rating</li>
+                            <li><TbStars style={{color: 'orange'}} size={40}/> Add Rating</li>
                             <li><FcComments size={40}/> Add Review</li>
                             <li><GrDocumentUpdate size={40}/> Update Recipes</li>
                             <li><FcLike style={{color: 'red'}} size={40}/> Add to Favourites</li>
