@@ -75,7 +75,7 @@ const FavouritesCard = () => {
         getLikeFood();
     };
     
-    
+
     return (
         <div className='foodWrapper container'>
             {data.map((item) => {
@@ -83,8 +83,8 @@ const FavouritesCard = () => {
                     <Card style={{ width: '18rem' }} key={item.id}>
                         <Card.Img className='cardImage' variant="top" src={item.imageUrl}/>
                             <Card.Body className='foodBody border-bottom'>
-                                <Card.Title><b>{item.name}</b></Card.Title>
-                                <Card.Text className='foodDesc'>{item.description}</Card.Text>
+                              <Card.Title><b>{item.name}</b></Card.Title>
+                              <Card.Text className='foodDesc'>{item.description}</Card.Text>
                             </Card.Body>
                             <div className='row foodFooter'>
                                 <div className='col-6'>
