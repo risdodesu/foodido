@@ -5,16 +5,21 @@ import { useParams } from "react-router-dom";
 import {BsHeartFill, BsStarFill} from 'react-icons/bs'
 import {MdOutlineRateReview} from 'react-icons/md'
 import { Button } from 'react-bootstrap';
+import defaultIcon from '../../assets/images/default-icon.jpg'
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
 const JWT_TOKEN = localStorage.getItem("token")
 
 const FoodDetail = () => {
-
-    let { foodId } = useParams();
+    
     const [food, setFood] = useState("");
-
+    let { foodId } = useParams();
+    const [foodReview, setFoodReview] = useState([])
+    const iconDefault = (e) => {
+        e.target.src = defaultIcon
+    }
+    
     useEffect(() => {
         axios({
           method: "get",
@@ -27,6 +32,22 @@ const FoodDetail = () => {
           .then((response) => {
             setFood(response.data.data);
           })
+
+          axios({
+            method: "get",
+            url: `${BASE_URL}/api/v1/food-rating/${foodId}`,
+            headers: {
+              apiKey: `${API_KEY}`,
+            },
+          })
+            .then((response) => {
+              console.log(response.data.data);
+              setFoodReview(response.data.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+
           .catch((error) => {
             console.log(error);
           });
@@ -62,7 +83,7 @@ const FoodDetail = () => {
                         <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='yellow' size={25} /></div>
                     <div className='ratingBt mt-3'>
                         <Button className='mb-3' variant='success'>
-                            Add Comments <MdOutlineRateReview/>
+                            Add Review <MdOutlineRateReview/>
                         </Button>
                     </div>
                     </div>
@@ -76,10 +97,22 @@ const FoodDetail = () => {
                             </div>
                         </> 
                     }
+
                     <h1 className='border-bottom'><b>Review</b></h1>
-                    <div className='foodReview'>
-                        ini review
+                    <div className='foodReviews'>
+                      {foodReview.map((dataReview) => {
+                        return(
+                          <div className='userReviews' key={dataReview.id}>
+                              <span><img src={
+                                dataReview.user && dataReview.user.profilePictureUrl ? dataReview.user && dataReview.user.profilePictureUrl 
+                                : defaultIcon} alt={dataReview.user.name} onError={iconDefault}></img></span>
+                              <span><b>{dataReview.user.name}</b></span>
+                              <p>{dataReview.review}</p>
+                          </div>
+                        );
+                      })}
                     </div>
+
                 </div>
             </div>
         </div>
