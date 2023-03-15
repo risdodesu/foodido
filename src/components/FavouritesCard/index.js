@@ -87,7 +87,7 @@ const FavouritesCard = () => {
                             </Card.Body>
                             <div className='row foodFooter'>
                                 <div className='col-6'>
-                                    <div>{item.rating} <BsStarFill color='yellow' size={15}/></div>
+                                    <div>{item.rating} <BsStarFill color='orange' size={15}/></div>
                                     <div><BsHeartFill style={{
                                             color: `${item.isLike ? "red" : "grey"}`,
                                             cursor: "pointer"
