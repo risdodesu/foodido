@@ -3,9 +3,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {BsHeartFill, BsStarFill} from 'react-icons/bs'
-import {MdOutlineRateReview} from 'react-icons/md'
-import { Button } from 'react-bootstrap';
 import defaultIcon from '../../assets/images/default-icon.jpg'
+import ReviewModal from '../ReviewModal';
 
 const BASE_URL = process.env.REACT_APP_FOOD_BASEURL;
 const API_KEY = process.env.REACT_APP_FOOD_APIKEY;
@@ -15,7 +14,8 @@ const FoodDetail = () => {
     
     const [food, setFood] = useState("");
     let { foodId } = useParams();
-    const [foodReview, setFoodReview] = useState([])
+    const [foodReview, setFoodReview] = useState([]);
+    
     const iconDefault = (e) => {
         e.target.src = defaultIcon
     }
@@ -82,9 +82,7 @@ const FoodDetail = () => {
                         /> {food.totalLikes} suka</div>
                         <div className='col-6 col-md-6 col-lg-6'>{food.rating} <BsStarFill color='yellow' size={25} /></div>
                     <div className='ratingBt mt-3'>
-                        <Button className='mb-3' variant='success'>
-                            Add Review <MdOutlineRateReview/>
-                        </Button>
+                    <ReviewModal/>
                     </div>
                     </div>
                     ) : <>
