@@ -75,7 +75,6 @@ const FavouritesCard = () => {
         getLikeFood();
     };
     
-
     return (
         <div className='foodWrapper container'>
             {data.map((item) => {
