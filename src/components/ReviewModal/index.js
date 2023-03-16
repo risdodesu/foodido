@@ -73,7 +73,7 @@ const ReviewModal = (props) => {
 
             <Modal show={show} onHide={handleClose}
                 {...props}
-                size="md"
+                size="sm"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 >

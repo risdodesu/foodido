@@ -80,7 +80,7 @@ const FavouritesCard = () => {
         <div className='foodWrapper container'>
             {data.map((item) => {
                 return (
-                    <Card style={{ width: '18rem' }} key={item.id}>
+                    <Card style={{ width: '18rem' }} key={item.id} className='cardHover'>
                         <Card.Img className='cardImage' variant="top" src={item.imageUrl}/>
                             <Card.Body className='foodBody border-bottom'>
                               <Card.Title><b>{item.name}</b></Card.Title>

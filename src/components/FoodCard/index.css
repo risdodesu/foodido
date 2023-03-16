@@ -1,3 +1,11 @@
+.cardHover{
+    transition: 0.2s ease;
+}
+.cardHover:hover{
+    scale: 0.9;
+    cursor: pointer;
+}
+
 .cardImage{
     height: 200px;
 }
