@@ -90,3 +90,7 @@ span a:hover{
     height: 400px;
     overflow: auto;
 }
+
+.regForm label{
+    margin-top: 10px;
+}
