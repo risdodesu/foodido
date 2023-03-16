@@ -126,7 +126,7 @@ const AddFoodForm = () => {
                                       className="btn btn-success "
                                       onClick={() => push("")}
                                     >
-                                      <i className="ri-add-fill">+</i>
+                                      <b className="ri-add-fill">+</b>
                                     </button>
                                   </div>
                                 ))}
